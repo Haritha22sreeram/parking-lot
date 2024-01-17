@@ -2,6 +2,7 @@ package com.thoughtworks.parkinglot;
 
 import com.thoughtworks.parkinglot.exceptions.AlreadyParkedException;
 import com.thoughtworks.parkinglot.exceptions.ParkingLotFullException;
+import com.thoughtworks.parkinglot.exceptions.ParkableNotFoundException;
 
 import java.util.HashSet;
 
@@ -28,5 +29,13 @@ public class ParkingLot {
 
     private boolean isFull() {
         return parkedVehicles.size() >= capacity;
+    }
+
+    public void unpark(Parkable parkable) throws ParkableNotFoundException{
+        if(parkedVehicles.contains(parkable))
+            parkedVehicles.remove(parkable);
+        else{
+            throw new ParkableNotFoundException();
+        }
     }
 }
